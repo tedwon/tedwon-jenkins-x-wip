@@ -1,0 +1,36 @@
+// .images
+// Demonstration of revealjs images embedding with some options.
+// :include: //div[@class="slides"]
+// :header_footer:
+= Images tests
+:imagesdir: images
+
+== Jenkins
+
+image::jenkins-wide.png[]
+
+== Hardcoded
+
+image::jenkins-wide.png[scaledwidth=50%]
+
+== Hardcoded
+
+image::jenkins-wide.png[width="400"]
+
+== Hardcoded
+
+image::jenkins.png[width="400"]
+
+
+== Normal
+
+image::web_surfing_time.gif[]
+
+== Stretched
+
+[.stretch]
+image::web_surfing_time.gif[]
+
+== Hardcoded
+
+image::web_surfing_time.gif[width="1200"]

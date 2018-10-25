@@ -1,22 +1,140 @@
 = Jenkins X
 
-automated CI/CD for cloud native application
+automated CI/CD for cloud native apps on Kubernetes
 
 tedwon <jwon@redhat.com>
 
 ifndef::imagesdir[:imagesdir: images]
 ifndef::sourcedir[:sourcedir: ../../main/java]
 
+== James Strachan
+
+* Created by James Strachan
+* https://github.com/jenkins-x/jx/graphs/contributors
+* Golang
+
+== Environments in Kubernetes
+
+image::env.png[]
 
 
+== Jenkins
+
+image::jenkins.png[width="400"]
+
+
+== Jenkins X
+
+image::jenkinsx.png[width="400"]
+
+
+== Jenkins X, X means...
+
+* Jenkins + other apps
+* https://jenkins-x.io 
+
+
+== Jenkins X, X means...
+
+[%step]
+* Jenkins
+** CI/CD pipeline solution
+* Nexus
+** Artifact repository
+* https://helm.sh
+** package manager for Kubernetes
+* Chartmuseum
+** Helm Chart repository
+
+
+
+[NOTE.speaker]
+--
+Helm is ...
+Helm Chart is ...
+--
+
+== Jenkins X, X means...
+
+[%step]
+* Monocular
+** Web UI for helm charts
+* https://draft.sh
+** build packs used to bootstrap applications so they build and run on Kubernetes
+
+== Jenkins X, X means...
+
+[%step]
+
+* Skaffold
+** enabled RAD development, abstracts building and pushing images
+* Anchore
+** service that analyzes docker images and applies user-defined acceptance policies to allow automated container image validation and certification
+
+
+
+
+== What does that give me?
+
+* Dev team home environment
+** Jenkins master
+** Elastic pool of build agents
+** Nexus + chartmuseum + monocular
+* Staging environment
+* Production environment 
+
+== What are the challenges?
+
+[%step]
+* How to get started?
+* How do I wire everything together?
+* What do I need to start developing, building and deploying?
+* How do I access my applications?
+* How do dev teams work with Kubernetes?
+* How do I migrate my applications to the cloud?
 
 
 == Introduction
 
-[%step]
-* This is a user manual for an example project.
-* This project does something.
-* We just haven't decided what that is yet.
+//[%step]
+* https://jenkins.io/projects/jenkins-x/
+* Automated CI and CD
+* Applications, Environments and Promotion
+* Pull Request Preview Environments
+* Feedback on Issues and Pull Requests
+
+== Personally to me Jenkins X is
+
+* I can be familiar with Kubernetes/OpenShift.
+* help to rapidly create, deploy and manage cloud native applications on Kubernetes.
+* best practices
+* Guided delivery workflows for cloud native applications on Kubernetes
+* A single pane of glass to view and manage application delivery with promotion, deployment and auditing
+* Built-in integrations with best-of-breed tools
+
+== Step Overview
+
+* Step 1.Install Jx
+** https://jenkins-x.io/getting-started/install/ 
+* Step 2. Create Cluster GKE
+** https://jenkins-x.io/demos/create_cluster_gke/ 
+* Step 3. Create Cloud App - Spring Boot
+** http://jenkins-x.io/demos/create_spring/
+
+== How do I create applications?
+
+* Available commands:
+** jx create spring
+** jx create quickstart
+** jx import
+* Automatically set up CI/CD pipelines for new + imported projects
+** Setups up git repository
+** Registers webhooks to trigger pipelines for PR / master
+** Triggers the first pipeline
+
+== Roadmap
+
+* https://jenkins-x.io/contribute/roadmap/
 
 == Speaker Notes
 
@@ -83,3 +201,12 @@ imagesdir:: {imagesdir}
 .Custom
 project-version:: {project-version}
 sourcedir:: {sourcedir}
+
+== Please try it out!
+
+* https://jenkins-x.io/
+
+
+== References
+
+* https://www.dropbox.com/s/2l3yudybl8dx4j7/2.pdf?dl=0
