@@ -4,70 +4,13 @@ automated CI/CD for cloud native apps on Kubernetes
 
 tedwon <jwon@redhat.com>
 
-//:icons: font
-//:source-highlighter: prettify
-//:source-highlighter: highlightjs
-//:source-highlighter: coderay
-//:coderay-css: style
-
 ifndef::imagesdir[:imagesdir: images]
 ifndef::sourcedir[:sourcedir: ../../main/java]
-
-
-== demo
-
-* GKE cluster
-** myk8scluster1020
-*** https://goo.gl/PyrnCz
-*** https://goo.gl/PRh9eo
-**** Node: gke-myk8scluster1020-default-pool-1c9647a9-mmfk
-**** Context: gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020
-
-== demo
-
-[source,bash,options="nowrap"]
-----
-# Set which Kubernetes cluster kubectl communicates
-kubectl config use-context gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020
-Switched to context "gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020".
-
-jx context gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020
-Using namespace 'kube-system' from context named 'gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020' on server 'https://35.187.213.144'.
-
-# view the current context
-jx ctx -b
-Using namespace 'kube-system' from context named 'gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020' on server 'https://35.187.213.144'.
-
-jx ns
-jx ns jx
-kubectl get pods --all-namespaces             # List all pods in all namespaces
-kubectl get pods -o wide                      # List all pods in the namespace, with more details
-kubectl get services
-----
-
-== jx create cluster
-
-----
-$ jx help create cluster
-
-    * aks (Azure Container Service - https://docs.microsoft.com/en-us/azure/aks)
-    * aws (Amazon Web Services via kops - https://github.com/aws-samples/aws-workshop-for-kubernetes/blob/master/readme.adoc)
-    * eks (Amazon Web Services Elastic Container Service for Kubernetes - https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html)
-    * gke (Google Container Engine - https://cloud.google.com/kubernetes-engine)
-    * iks (IBM Cloud Kubernetes Service - https://console.bluemix.net/docs/containers)
-    * oke (Oracle Cloud Infrastructure Container Engine for Kubernetes - https://docs.cloud.oracle.com/iaas/Content/ContEng/Concepts/contengoverview.htm)
-    * kubernetes for custom installations of Kubernetes
-    * minikube (single-node Kubernetes cluster inside a VM on your laptop)
-	* minishift (single-node OpenShift cluster inside a VM on your laptop)
-	* openshift for installing on 3.9.x or later clusters of OpenShift
-----
 
 == James Strachan
 
 * Created by James Strachan
 ** https://github.com/jenkins-x/jx/graphs/contributors
-** https://www.linkedin.com/in/jstrachan/
-** https://en.wikipedia.org/wiki/James_Strachan_(programmer)
 * Opened from early of this year
 * Golang
 
