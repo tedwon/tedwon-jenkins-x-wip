@@ -2,6 +2,8 @@
 
 automated CI/CD for cloud native apps on Kubernetes
 
+https://jenkins-x.io/
+
 tedwon <jwon@redhat.com>
 
 //:icons: font
@@ -20,7 +22,15 @@ image::jenkins.png[width="400"]
 
 == Jenkins X
 
+[%step]
+* https://jenkins-x.io/
+
 image::jenkinsx.png[width="400"]
+
+
+== Jenkins X -  JBUG Hands-on
+
+* https://goo.gl/oBbHxA
 
 
 == James Strachan
@@ -30,19 +40,35 @@ image::jstrachan.png[width="400"]
 
 == James Strachan
 
+“The idea of Jenkins X is to give all developers their own naval seafaring butler that can help you sail the seas of continuous delivery.” [1]
+
+
+== James Strachan
+
+“Jenkins X의 아이디어는 모든 개발자에게 해군 항해에 필요한 집사를 제공하여 지속적으로 바다를 항해하는 데 도움을주는 것입니다.” [1]
+
+
+== James Strachan
+
 [%step]
 * Created by James Strachan
-** https://github.com/jenkins-x/jx/graphs/contributors
-** https://www.linkedin.com/in/jstrachan/
-** https://en.wikipedia.org/wiki/James_Strachan_(programmer)
 * Released March of this year
 ** https://twitter.com/jstrachan/status/975796722147438598
-* Golang
+** https://goo.gl/ceLcmq
+** Groovy
+** Apache ActiveMQ/Camel
+** https://github.com/jenkins-x/jx/graphs/contributors
+** https://www.linkedin.com/in/jstrachan/
+** link:https://en.wikipedia.org/wiki/James_Strachan_(programmer)[]
+** https://medium.com/@jstrachan
+** https://www.openhub.net/accounts/jstrachan
+
 
 == James Strachan
 
 [%step]
 * Developed similar project in Red Hat until 2017
+** https://goo.gl/4re3G7
 * Fabric8 Microservices Platform
 ** http://fabric8.io/
 *** https://fabric8.io/guide/fabric8DevOps.html
@@ -58,16 +84,19 @@ image::jstrachan.png[width="400"]
 * Applications, Environments and Promotion
 * Pull Request Preview Environments
 * Feedback on Issues and Pull Requests
+* https://github.com/jenkins-x/jx
+* Golang
+** https://github.com/jenkins-x/jx/tree/master/pkg/jx/cmd
 
-== Personally to me Jenkins X is
+== Personally What Benefits by Jenkins X
 
 [%step]
-* I can be familiar with Kubernetes/OpenShift.
-* help to rapidly create, deploy and manage cloud native applications on Kubernetes.
-* best practices
+* Getting more familiar with Cloud(Kubernetes/OpenShift)
+* Help to rapidly create, deploy and manage cloud native applications on Kubernetes.
+* Learn CI/CD basic practices
 
 
-== Personally to me Jenkins X is
+== Personally What Benefits by Jenkins X
 
 [%step]
 * Guided delivery workflows for cloud native applications on Kubernetes
@@ -111,6 +140,11 @@ image::jstrachan.png[width="400"]
 == Environments in Kubernetes
 
 image::env.png[]
+
+
+== jx Commands
+
+* https://jenkins-x.io/commands/jx/
 
 
 == Cloud Providers
@@ -213,6 +247,19 @@ sudo mv jx /usr/local/bin
 * Step 3. Create Cloud App - Spring Boot
 ** http://jenkins-x.io/demos/create_spring/
 
+
+== Step 2. Create Cluster GKE
+
+----
+jx create cluster minikube
+jx create cluster minishift
+jx create cluster gke
+----
+
+* https://jenkins-x.io/commands/jx_create_cluster_minikube/
+* http://jenkins-x.io/getting-started/create-cluster/
+
+
 == Step 2. Create Cluster GKE
 
 ----
@@ -225,6 +272,15 @@ jx create cluster gke --cluster-name tedd824-k8s-cluster-1027 --username admin -
 ----
 * https://asciinema.org/a/XGXT28lsJN2SNsuOAfb45Q6BM
 
+
+== What is Kubernetes
+
+* https://www.youtube.com/watch?v=IMOZCDhH7do
+
+
+== Continuous Integration & Continuous Deployment: CICD
+
+* https://www.youtube.com/watch?v=g0qSsex0Reg
 
 
 == jx command
@@ -270,6 +326,32 @@ kubectl get pods -o wide                      # List all pods in the namespace, 
 kubectl get services
 ----
 
+
+== Built-in integrations with best-of-breed tools
+
+----
+$ jx ns jx
+
+Using namespace 'jx' from context named 'gke_tedd824-k8s-project_asia-northeast1-c_tedd824-k8s-cluster-1027' on server 'https://35.221.73.79'.
+
+
+$ jx open
+
+Name                      URL
+jenkins                   http://jenkins.jx.35.221.76.242.nip.io
+jenkins-x-chartmuseum     http://chartmuseum.jx.35.221.76.242.nip.io
+jenkins-x-docker-registry http://docker-registry.jx.35.221.76.242.nip.io
+jenkins-x-monocular-api   http://monocular.jx.35.221.76.242.nip.io
+jenkins-x-monocular-ui    http://monocular.jx.35.221.76.242.nip.io
+nexus                     http://nexus.jx.35.221.76.242.nip.io
+----
+
+
+== Step 3. Create Cloud App - Spring Boot
+
+* https://jenkins-x.io/demos/create_spring/
+
+
 == How do I create applications?
 
 [%step]
@@ -278,6 +360,41 @@ kubectl get services
 ** jx create quickstart
 ** jx import
 
+----
+jx create spring -d web -d actuator
+cd demo && jx import
+jx import --url https://github.com/tedwon/starter.git --credentials=admin-admin
+# Watch pipeline activity via:    jx get activity -f demo -w
+# Browse the pipeline log via:    jx get build logs tedwon/demo/master
+# Open the Jenkins console via    jx console
+# You can list the pipelines via: jx get pipelines
+# When the pipeline is complete:  jx get applications
+jx get build logs
+jx get apps
+jx open
+jx open --env staging
+cd demo && jx create issue -t 'add a homepage'
+git checkout -b wip
+echo "hellow world" >> src/main/resources/static/index.html
+git add src
+git status
+git commit -a -m 'add a homepage fixes #1'
+git push origin wip
+hub pull-request
+jx env dev
+jx get build logs
+jx get apps
+jx promote --version 0.0.2 --env production --timeout 1h
+jx get apps
+jx env
+jx open
+jx edit environment
+----
+
+
+== Generate a Vert.x project & import
+
+* http://start.vertx.io/
 
 == How do I create applications?
 
@@ -288,15 +405,69 @@ kubectl get services
 ** Triggers the first pipeline
 
 
+== kubectl Commands
+
+* kubectl Cheat Sheet
+** https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+----
+kubectl top pod
+kubectl top node
+kubectl get services
+kubectl get pods
+kubectl get pods --all-namespaces
+kubectl get pods -o wide
+kubectl describe pod jx-staging-demo-thorntail-102100-c7898d496-lrr5n
+kubectl get pvc # You can check your storage class and persistent volume setup via:
+kubectl logs jx-staging-demo-thorntail-102100-c7898d496-lrr5n
+kubectl logs --tail=1000 jx-staging-demo-thorntail-102100-c7898d496-lrr5n
+kubectl delete pod maven-bc4h8 --namespace jx
+kubectl cluster-info
+kubectl cluster-info dump --output-directory=/path/to/cluster-state
+----
+
+== What is GitOps?
+
+[%step]
+* This is a set of principles for managing software and infrastructure based on Git:
+* The value of Jenkins X is that if you follow this best practice, then Jenkins X assembles all the pieces for you (e.g., Jenkins, Kubernetes, Git, CI/CD etc) such that developers can be instantly productive.
+* This is akin to what Maven brought over Ant — encouraging developers to use a standard Lifecycle-model provided by Maven (DRY) to achieve greater productivity.
+* When we integrate Kubernetes and Jenkins together, developers need not be familiar with how best to do CD on Kubernetes (most people are not) nor do they need to be familiar with Jenkins Pipeline (most people are not).
+* This much better ease of use can make Kubernetes itself a much more attractive platform, and make Jenkins a de-facto CI/CD platform for Kubernetes. This is the motivation of Jenkins X.
+
+* https://www.weave.works/blog/gitops-operations-by-pull-request
+* https://dzone.com/articles/what-is-gitops-really
+* https://github.com/weaveworks/flux
+* https://www.weave.works/blog/what-is-gitops-really
+* https://www.twistlock.com/2018/08/06/gitops-101-gitops-use/
+
+
 == Please try it out!
 
 * https://jenkins-x.io/
 
 
+== Using a different git provider for environments 
+
+* https://jenkins-x.io/developing/git/#using-a-different-git-provider-for-environments
+
+
 == References
 
-* Roadmap https://jenkins-x.io/contribute/roadmap/
+* [1] https://developer.okta.com/blog/2018/07/11/ci-cd-spring-boot-jenkins-x-kubernetes
+* Introducing Jenkins X: a CI/CD solution for modern cloud applications on Kubernetes https://jenkins.io/blog/2018/03/19/introducing-jenkins-x/
+* Jenkins X: Easy CI/CD for Kubernetes - James Strachan https://www.youtube.com/watch?v=uHe7R_iZSLU
+* Accelerate with Jenkins X https://jenkins.io/blog/2018/07/19/jenkins-x-accelerate/
+** https://jenkins.io/images/jenkins-x/accelerate/JenkinsX_capabilities.png
+* Jenkins: X or 2.0 ? https://dzone.com/articles/jenkins-x-the-good-bad-and-ugly
+* JenkinsX – new Kubernetes dream? Part 1 https://blog.octo.com/en/jenkinsx-new-kubernetes-dream-part-1/
 * https://www.dropbox.com/s/2l3yudybl8dx4j7/2.pdf?dl=0
-* GitOps https://dzone.com/articles/what-is-gitops-really
 * https://docs.google.com/presentation/d/1hwt2lFh3cCeFdP4xoT_stMPs0nh2xVZUtze6o79WfXc/edit#slide=id.p
-* 2011년 메모: https://tedwon.atlassian.net/wiki/spaces/SE/pages/1212796/CloudBees
+* Jenkins http://www.itworld.co.kr/news/107527
+* https://www.redhat.com/en/blog/integrating-ansible-jenkins-cicd-process
+* http://woowabros.github.io/experience/2018/06/26/bros-cicd.html
+* GitOps https://dzone.com/articles/what-is-gitops-really
+* Jenkins X Roadmap https://jenkins-x.io/contribute/roadmap/
+* CloudBees 2011년 메모: https://tedwon.atlassian.net/wiki/spaces/SE/pages/1212796/CloudBees
+* JBUG Hands-on https://goo.gl/oBbHxA
+
