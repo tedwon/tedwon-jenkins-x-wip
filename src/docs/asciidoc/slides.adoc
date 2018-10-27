@@ -88,7 +88,7 @@ image::jstrachan.png[width="400"]
 * Golang
 ** https://github.com/jenkins-x/jx/tree/master/pkg/jx/cmd
 
-== Personally What Benefits by Jenkins X
+== Personal Benefits by Jenkins X
 
 [%step]
 * Getting more familiar with Cloud(Kubernetes/OpenShift)
@@ -96,7 +96,7 @@ image::jstrachan.png[width="400"]
 * Learn CI/CD basic practices
 
 
-== Personally What Benefits by Jenkins X
+== Personal Benefits by Jenkins X
 
 [%step]
 * Guided delivery workflows for cloud native applications on Kubernetes
@@ -278,7 +278,7 @@ jx create cluster gke --cluster-name tedd824-k8s-cluster-1027 --username admin -
 * https://www.youtube.com/watch?v=IMOZCDhH7do
 
 
-== Continuous Integration & Continuous Deployment: CICD
+== Continuous Integration & Continuous Delivery: CI/CD
 
 * https://www.youtube.com/watch?v=g0qSsex0Reg
 
@@ -470,4 +470,6 @@ kubectl cluster-info dump --output-directory=/path/to/cluster-state
 * Jenkins X Roadmap https://jenkins-x.io/contribute/roadmap/
 * CloudBees 2011년 메모: https://tedwon.atlassian.net/wiki/spaces/SE/pages/1212796/CloudBees
 * JBUG Hands-on https://goo.gl/oBbHxA
+
+== Thank you
 
