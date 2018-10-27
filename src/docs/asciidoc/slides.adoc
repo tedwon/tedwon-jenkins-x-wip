@@ -16,12 +16,16 @@ ifndef::sourcedir[:sourcedir: ../../main/java]
 
 == demo
 
-* GKE cluster
+* GKE cluster: realtimecep@gmail.com
 ** myk8scluster1020
 *** https://goo.gl/PyrnCz
 *** https://goo.gl/PRh9eo
 **** Node: gke-myk8scluster1020-default-pool-1c9647a9-mmfk
 **** Context: gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020
+
+== demo
+
+* GKE cluster: tedd824@gmail.com
 
 == demo
 
@@ -45,7 +49,7 @@ kubectl get pods -o wide                      # List all pods in the namespace, 
 kubectl get services
 ----
 
-== jx create cluster
+== Cloud Providers
 
 ----
 $ jx help create cluster
@@ -70,6 +74,11 @@ $ jx help create cluster
 ** https://en.wikipedia.org/wiki/James_Strachan_(programmer)
 * Opened from early of this year
 * Golang
+
+* Developed similar project in Red Hat until 2017
+** Fabric8 Microservices Platform
+*** http://fabric8.io/
+*** https://fabric8.io/guide/fabric8DevOps.html
 
 == Environments in Kubernetes
 
@@ -103,7 +112,8 @@ image::jenkinsx.png[width="400"]
 ** package manager for Kubernetes
 * Chartmuseum
 ** Helm Chart repository
-
+*** Helm is the most popular Kubernetes package manager used to install and upgrade your applications
+* https://github.com/jenkins-x/jenkins-x-platform
 
 
 [NOTE.speaker]
@@ -134,12 +144,47 @@ Helm Chart is ...
 
 == What does that give me?
 
-* Dev team home environment
+[%step]
+* Each dev team gets their own:
+* Development Tools Environment
 ** Jenkins master
-** Elastic pool of build agents
-** Nexus + chartmuseum + monocular
-* Staging environment
-* Production environment 
+** Elastic pool of Kubernetes build pods(agents)
+** Nexus + Chartmuseum + Monocular (helm application store)
+* Staging Environment
+* Production Environment
+
+
+
+
+
+== How does Jenkins X help?
+
+* Automates the installation/upgrade of tools
+** Helm, Skaffold, Kaniko, Jenkins, KSync, Monocular, Nexus etc
+** All configured + optimised for Kubernetes OOTB
+* Automates CI/CD for your applications on Kubernetes
+** Docker images
+** Helm charts
+** Pipelines
+* Uses GitOps to manage promotion between environments
+** Test -> Staging -> Production
+* Lots of feedback
+** E.g. commenting on issues as they hit Staging + Production
+
+== How do we setup Kubernetes + Jenkins X?
+
+* Install the command line tool: jx
+* http://jenkins-x.io/getting-started/install/
+
+----
+macOs:
+brew tap jenkins-x/jx
+brew install jx 
+
+linux:
+curl -L https://github.com/jenkins-x/jx/releases/download/v1.2.16/jx-linux-amd64.tar.gz | tar xzv 
+sudo mv jx /usr/local/bin
+----
 
 == What are the challenges?
 
@@ -178,6 +223,17 @@ Helm Chart is ...
 ** https://jenkins-x.io/demos/create_cluster_gke/ 
 * Step 3. Create Cloud App - Spring Boot
 ** http://jenkins-x.io/demos/create_spring/
+
+== Step 2. Create Cluster GKE
+
+----
+asciinema rec -i 1 -t "Creating GKE Kubernetes cluster with Jenkins X"
+
+jx create cluster gke --cluster-name myk8scluster1027 --username admin --default-admin-password admin123! --verbose=true --log-level debug
+
+----
+
+
 
 == jx command
 
@@ -274,3 +330,6 @@ sourcedir:: {sourcedir}
 == References
 
 * https://www.dropbox.com/s/2l3yudybl8dx4j7/2.pdf?dl=0
+* GitOps https://dzone.com/articles/what-is-gitops-really
+* https://docs.google.com/presentation/d/1hwt2lFh3cCeFdP4xoT_stMPs0nh2xVZUtze6o79WfXc/edit#slide=id.p
+* 
