@@ -1,0 +1,1 @@
+mvn && open file:///Users/tedwon/rh/build/upstream/jx/tedwon-jenkins-x-wip/target/generated-slides/slides.html

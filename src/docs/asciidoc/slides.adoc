@@ -13,41 +13,105 @@ tedwon <jwon@redhat.com>
 ifndef::imagesdir[:imagesdir: images]
 ifndef::sourcedir[:sourcedir: ../../main/java]
 
+== Jenkins
 
-== demo
+image::jenkins.png[width="400"]
 
-* GKE cluster: realtimecep@gmail.com
-** myk8scluster1020
-*** https://goo.gl/PyrnCz
-*** https://goo.gl/PRh9eo
-**** Node: gke-myk8scluster1020-default-pool-1c9647a9-mmfk
-**** Context: gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020
 
-== demo
+== Jenkins X
 
-* GKE cluster: tedd824@gmail.com
+image::jenkinsx.png[width="400"]
 
-== demo
 
-[source,bash,options="nowrap"]
-----
-# Set which Kubernetes cluster kubectl communicates
-kubectl config use-context gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020
-Switched to context "gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020".
+== James Strachan
 
-jx context gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020
-Using namespace 'kube-system' from context named 'gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020' on server 'https://35.187.213.144'.
+image::jstrachan.png[width="400"]
 
-# view the current context
-jx ctx -b
-Using namespace 'kube-system' from context named 'gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020' on server 'https://35.187.213.144'.
 
-jx ns
-jx ns jx
-kubectl get pods --all-namespaces             # List all pods in all namespaces
-kubectl get pods -o wide                      # List all pods in the namespace, with more details
-kubectl get services
-----
+== James Strachan
+
+[%step]
+* Created by James Strachan
+** https://github.com/jenkins-x/jx/graphs/contributors
+** https://www.linkedin.com/in/jstrachan/
+** https://en.wikipedia.org/wiki/James_Strachan_(programmer)
+* Released March of this year
+** https://twitter.com/jstrachan/status/975796722147438598
+* Golang
+
+== James Strachan
+
+[%step]
+* Developed similar project in Red Hat until 2017
+* Fabric8 Microservices Platform
+** http://fabric8.io/
+*** https://fabric8.io/guide/fabric8DevOps.html
+
+
+== Introduction
+
+[%step]
+* https://jenkins.io/projects/jenkins-x/
+** JEP-400
+*** https://github.com/jenkinsci/jep/tree/master/jep/400
+* Automated CI and CD
+* Applications, Environments and Promotion
+* Pull Request Preview Environments
+* Feedback on Issues and Pull Requests
+
+== Personally to me Jenkins X is
+
+[%step]
+* I can be familiar with Kubernetes/OpenShift.
+* help to rapidly create, deploy and manage cloud native applications on Kubernetes.
+* best practices
+
+
+== Personally to me Jenkins X is
+
+[%step]
+* Guided delivery workflows for cloud native applications on Kubernetes
+* A single pane of glass to view and manage application delivery with promotion, deployment and auditing
+* Built-in integrations with best-of-breed tools
+
+
+== What does that give me?
+
+[%step]
+* Each dev team gets their own:
+* Development Tools Environment
+** Jenkins master
+** Elastic pool of Kubernetes build pods(agents)
+** Nexus + Chartmuseum + Monocular (helm application store)
+* Staging Environment
+* Production Environment
+
+
+== How does Jenkins X help?
+
+[%step]
+* Automates the installation/upgrade of tools
+** Helm, Skaffold, Kaniko, Jenkins, KSync, Monocular, Nexus etc
+** All configured + optimised for Kubernetes OOTB
+* Automates CI/CD for your applications on Kubernetes
+** Docker images
+** Helm charts
+** Pipelines
+
+
+== How does Jenkins X help?
+
+[%step]
+* Uses GitOps to manage promotion between environments
+** Test -> Staging -> Production
+* Lots of feedback
+** E.g. commenting on issues as they hit Staging + Production
+
+
+== Environments in Kubernetes
+
+image::env.png[]
+
 
 == Cloud Providers
 
@@ -66,35 +130,6 @@ $ jx help create cluster
 	* openshift for installing on 3.9.x or later clusters of OpenShift
 ----
 
-== James Strachan
-
-* Created by James Strachan
-** https://github.com/jenkins-x/jx/graphs/contributors
-** https://www.linkedin.com/in/jstrachan/
-** https://en.wikipedia.org/wiki/James_Strachan_(programmer)
-* Opened from early of this year
-* Golang
-
-* Developed similar project in Red Hat until 2017
-** Fabric8 Microservices Platform
-*** http://fabric8.io/
-*** https://fabric8.io/guide/fabric8DevOps.html
-
-== Environments in Kubernetes
-
-image::env.png[]
-
-
-== Jenkins
-
-image::jenkins.png[width="400"]
-
-
-== Jenkins X
-
-image::jenkinsx.png[width="400"]
-
-
 == Jenkins X, X means...
 
 * Jenkins + other apps
@@ -112,8 +147,6 @@ image::jenkinsx.png[width="400"]
 ** package manager for Kubernetes
 * Chartmuseum
 ** Helm Chart repository
-*** Helm is the most popular Kubernetes package manager used to install and upgrade your applications
-* https://github.com/jenkins-x/jenkins-x-platform
 
 
 [NOTE.speaker]
@@ -129,6 +162,9 @@ Helm Chart is ...
 ** Web UI for helm charts
 * https://draft.sh
 ** build packs used to bootstrap applications so they build and run on Kubernetes
+*** Helm is the most popular Kubernetes package manager used to install and upgrade your applications
+* https://github.com/jenkins-x/jenkins-x-platform
+
 
 == Jenkins X, X means...
 
@@ -139,37 +175,6 @@ Helm Chart is ...
 * Anchore
 ** service that analyzes docker images and applies user-defined acceptance policies to allow automated container image validation and certification
 
-
-
-
-== What does that give me?
-
-[%step]
-* Each dev team gets their own:
-* Development Tools Environment
-** Jenkins master
-** Elastic pool of Kubernetes build pods(agents)
-** Nexus + Chartmuseum + Monocular (helm application store)
-* Staging Environment
-* Production Environment
-
-
-
-
-
-== How does Jenkins X help?
-
-* Automates the installation/upgrade of tools
-** Helm, Skaffold, Kaniko, Jenkins, KSync, Monocular, Nexus etc
-** All configured + optimised for Kubernetes OOTB
-* Automates CI/CD for your applications on Kubernetes
-** Docker images
-** Helm charts
-** Pipelines
-* Uses GitOps to manage promotion between environments
-** Test -> Staging -> Production
-* Lots of feedback
-** E.g. commenting on issues as they hit Staging + Production
 
 == How do we setup Kubernetes + Jenkins X?
 
@@ -197,26 +202,10 @@ sudo mv jx /usr/local/bin
 * How do I migrate my applications to the cloud?
 
 
-== Introduction
-
-//[%step]
-* https://jenkins.io/projects/jenkins-x/
-* Automated CI and CD
-* Applications, Environments and Promotion
-* Pull Request Preview Environments
-* Feedback on Issues and Pull Requests
-
-== Personally to me Jenkins X is
-
-* I can be familiar with Kubernetes/OpenShift.
-* help to rapidly create, deploy and manage cloud native applications on Kubernetes.
-* best practices
-* Guided delivery workflows for cloud native applications on Kubernetes
-* A single pane of glass to view and manage application delivery with promotion, deployment and auditing
-* Built-in integrations with best-of-breed tools
 
 == Step Overview
 
+[%step]
 * Step 1.Install Jx
 ** https://jenkins-x.io/getting-started/install/ 
 * Step 2. Create Cluster GKE
@@ -231,7 +220,10 @@ asciinema rec -i 1 -t "Creating GKE Kubernetes cluster with Jenkins X"
 
 jx create cluster gke --cluster-name myk8scluster1027 --username admin --default-admin-password admin123! --verbose=true --log-level debug
 
+jx create cluster gke --cluster-name tedd824-k8s-cluster-1027 --username admin --default-admin-password admin123!
+
 ----
+* https://asciinema.org/a/XGXT28lsJN2SNsuOAfb45Q6BM
 
 
 
@@ -241,86 +233,60 @@ jx create cluster gke --cluster-name myk8scluster1027 --username admin --default
 * jx namespace
 * jx env
 
+
+== demo
+
+* GKE cluster: realtimecep@gmail.com
+** myk8scluster1020
+*** https://goo.gl/PyrnCz
+*** https://goo.gl/PRh9eo
+**** Node: gke-myk8scluster1020-default-pool-1c9647a9-mmfk
+**** Context: gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020
+
+
+== demo
+
+* GKE cluster: tedd824@gmail.com
+
+== demo
+
+[source,bash,options="nowrap"]
+----
+# Set which Kubernetes cluster kubectl communicates
+kubectl config use-context gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020
+Switched to context "gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020".
+
+jx context gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020
+Using namespace 'kube-system' from context named 'gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020' on server 'https://35.187.213.144'.
+
+# view the current context
+jx ctx -b
+Using namespace 'kube-system' from context named 'gke_my-k8s-project-220013_asia-northeast1-a_myk8scluster1020' on server 'https://35.187.213.144'.
+
+jx ns
+jx ns jx
+kubectl get pods --all-namespaces             # List all pods in all namespaces
+kubectl get pods -o wide                      # List all pods in the namespace, with more details
+kubectl get services
+----
+
 == How do I create applications?
 
+[%step]
 * Available commands:
 ** jx create spring
 ** jx create quickstart
 ** jx import
+
+
+== How do I create applications?
+
+[%step]
 * Automatically set up CI/CD pipelines for new + imported projects
 ** Setups up git repository
 ** Registers webhooks to trigger pipelines for PR / master
 ** Triggers the first pipeline
 
-== Roadmap
-
-* https://jenkins-x.io/contribute/roadmap/
-
-== Speaker Notes
-
-Press the `*s*` key to access speaker notes.
-
-[NOTE.speaker]
---
-You've unlocked the super secret notes area.
-Neat huh?
---
-
-== Source Code
-
-[source,java]
-.Java code from project
-----
-include::{sourcedir}/example/StringUtils.java[tags=contains,indent=0]
-----
-
-This page was built by the following command:
-
- $ mvn
-
-== Blank screen
-
-You can press `*b*` or `*.*` to blank your current screen.
-
-Hit it again to bring it back.
-
-== Overview
-
-Press the `*esc*` key to get an overview of your slides.
-
-== Including documents from subdir
-
-.include::subdir/_b.adoc[]
-
-include::subdir/_b.adoc[]
-
-== Images
-
-[.thumb]
-image::sunset.jpg[scaledwidth=75%]
-
-== Images as background
-
-image::sunset.jpg[background, size=cover]
-
-Try setting an animated GIF.
-
-== Attributes
-
-Press the down arrow key to see the next sub-slide.
-
-=== Attributes Part 1
-.Built-in
-asciidoctor-version:: {asciidoctor-version}
-safe-mode-name:: {safe-mode-name}
-docdir:: {docdir}
-docfile:: {docfile}
-imagesdir:: {imagesdir}
-
-=== Attributes Part 2
-.Custom
-project-version:: {project-version}
-sourcedir:: {sourcedir}
 
 == Please try it out!
 
@@ -329,7 +295,8 @@ sourcedir:: {sourcedir}
 
 == References
 
+* Roadmap https://jenkins-x.io/contribute/roadmap/
 * https://www.dropbox.com/s/2l3yudybl8dx4j7/2.pdf?dl=0
 * GitOps https://dzone.com/articles/what-is-gitops-really
 * https://docs.google.com/presentation/d/1hwt2lFh3cCeFdP4xoT_stMPs0nh2xVZUtze6o79WfXc/edit#slide=id.p
-* 
+* 2011년 메모: https://tedwon.atlassian.net/wiki/spaces/SE/pages/1212796/CloudBees
