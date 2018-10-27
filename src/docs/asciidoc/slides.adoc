@@ -218,10 +218,10 @@ Helm Chart is ...
 ----
 macOs:
 brew tap jenkins-x/jx
-brew install jx 
+brew install jx
 
 linux:
-curl -L https://github.com/jenkins-x/jx/releases/download/v1.2.16/jx-linux-amd64.tar.gz | tar xzv 
+curl -L https://github.com/jenkins-x/jx/releases/download/v1.3.467/jx-darwin-amd64.tar.gz | tar xzv 
 sudo mv jx /usr/local/bin
 ----
 
@@ -361,8 +361,25 @@ nexus                     http://nexus.jx.35.221.76.242.nip.io
 ** jx import
 
 ----
+asciinema rec -i 1 -t "Creating hello world Spring Boot app"
+
 jx create spring -d web -d actuator
+
+helm install chartmuseum/demo1027 --version 0.0.2
+
+asciinema rec -i 1 -t "Creating hello world Vertx app"
+
 cd demo && jx import
+
+APPLICATION STAGING PODS URL                                                PRODUCTION PODS URL
+demo1027    0.0.2   1/1  http://demo1027.jx-staging.35.221.76.242.nip.io    0.0.2      1/1  http://demo1027.jx-production.35.221.76.242.nip.io
+starter1027 1.0.2   1/1  http://starter1027.jx-staging.35.221.76.242.nip.io
+
+~/jx/starter1027(master) »                                                            tedwon@mymac
+asciinema: recording finished
+asciinema: press <enter> to upload to asciinema.org, <ctrl-c> to save locally
+asciinema: asciicast saved to /var/folders/99/p_rsjtc15pd53bz9mnqfy12c0000gn/T/tmptaplw7bt-ascii.cast
+
 jx import --url https://github.com/tedwon/starter.git --credentials=admin-admin
 # Watch pipeline activity via:    jx get activity -f demo -w
 # Browse the pipeline log via:    jx get build logs tedwon/demo/master
@@ -411,6 +428,10 @@ jx edit environment
 ** https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 ----
+kubectl get namespaces
+kubectl get ns
+
+
 kubectl top pod
 kubectl top node
 kubectl get services
@@ -424,6 +445,17 @@ kubectl logs --tail=1000 jx-staging-demo-thorntail-102100-c7898d496-lrr5n
 kubectl delete pod maven-bc4h8 --namespace jx
 kubectl cluster-info
 kubectl cluster-info dump --output-directory=/path/to/cluster-state
+
+
+kubectl delete pod maven-4p1jm --namespace jx
+kubectl delete pod maven-54q83 --namespace jx
+kubectl delete pod maven-5tkpj --namespace jx
+kubectl delete pod maven-6x8nd --namespace jx
+kubectl delete pod maven-7pws5 --namespace jx
+kubectl delete pod maven-c5wc8 --namespace jx
+kubectl delete pod maven-ck3k7 --namespace jx
+
+
 ----
 
 == What is GitOps?
